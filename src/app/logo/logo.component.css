@@ -1,0 +1,23 @@
+/* 
+Cooper Std Black
+
+font-family: "cooper-black-std", serif;
+font-weight: 400;
+font-style: normal; 
+*/
+
+/* 
+Cooper Std Black Italic
+
+font-family: "cooper-black-std", serif;
+font-weight: 400;
+font-style: italic; 
+*/
+
+h1.main-logo {
+  font-family: "cooper-black-std", serif;
+  font-weight: 400;
+  font-style: normal;
+
+  margin: 35px 0 10px 0;
+}
