@@ -1,3 +1,18 @@
 <div class="main-container">
-  <div class="schedule"></div>
+  <table class="schedule">
+    <thead>
+      <tr>
+        <th
+          *ngFor="let day of ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']"
+        >
+          {{ day }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let week of getWeeks()">
+        <td *ngFor="let day of week">{{ day.getDate() }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
