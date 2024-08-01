@@ -3,7 +3,6 @@ import { RouterOutlet, RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { LogoComponent } from './logo/logo.component';
 import { ScheduleComponent } from './schedule/schedule.component';
-import { DataTableComponent } from './data-table/data-table.component';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +13,6 @@ import { DataTableComponent } from './data-table/data-table.component';
     HeaderComponent,
     LogoComponent,
     ScheduleComponent,
-    DataTableComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

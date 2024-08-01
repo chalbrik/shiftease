@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Employee } from './employee.model';
 
 @Component({
@@ -10,4 +10,11 @@ import { Employee } from './employee.model';
 })
 export class EmployeeComponent {
   @Input({ required: true }) employee!: Employee;
+  @Input({ required: true }) selected!: boolean;
+
+  @Output() select = new EventEmitter<string>();
+
+  onSelectEmployee() {
+    this.select.emit(this.employee.id);
+  }
 }

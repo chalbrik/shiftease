@@ -14,15 +14,9 @@ import { Employee } from '../employee/employee.model';
 })
 export class ScheduleComponent {
   employees = DUMMY_EMPLOYEES;
-  numberOfEmployees = this.employees.length;
-  //tutaj trzeba zrobić tablice z numerami dat w miesiącu
-  //potrzebuję tablicy z numerami i nazwami dni w miesiącu
+  selectedEmployeeId?: string;
 
   constructor(private scheduleService: ScheduleService) {}
-
-  // get currentDayDate(){
-
-  // }
 
   get daysOfCurrentMonth(): dateTag[] {
     return this.scheduleService.getDaysInMonth();
