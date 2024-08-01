@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { dateTag } from '../schedule/schedule.model';
+import { Employee } from '../employee/employee.model';
 
 @Component({
   selector: 'app-schedule-field',
@@ -10,4 +11,5 @@ import { dateTag } from '../schedule/schedule.model';
 })
 export class ScheduleFieldComponent {
   @Input({ required: true }) numberOfTheDay!: dateTag;
+  @Input({ required: true }) employees!: Employee[];
 }

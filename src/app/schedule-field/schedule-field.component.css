@@ -1,13 +1,33 @@
 div.schedule-field {
-  height: 350px;
-  width: 100px;
-
+  width: 40px;
   background-color: white;
+}
 
-  border-radius: 10px;
-
+div.upper-schedule-part {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+
+div.lower-schedule-part {
+  width: 35px;
+  height: 30px;
+}
+
+input.employee-hours {
+  width: 35px;
+  height: 30px;
+
+  padding: 0;
+
+  padding-block: 0;
+  padding-inline: 0;
+}
+
+span.schedule-field-date {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 8px;
 }

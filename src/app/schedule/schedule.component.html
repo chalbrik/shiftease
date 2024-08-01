@@ -6,7 +6,7 @@
   </div>
   <div class="schedule-field-container">
     @for(dayNumber of daysOfCurrentMonth; track dayNumber.numberOfTheDay){
-    <app-schedule-field [numberOfTheDay]="dayNumber" />
+    <app-schedule-field [numberOfTheDay]="dayNumber" [employees]="employees" />
     }
   </div>
 </div>

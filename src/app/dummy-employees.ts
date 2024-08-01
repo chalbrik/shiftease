@@ -19,4 +19,9 @@ export const DUMMY_EMPLOYEES = [
     name: 'Gabriela',
     last_name: 'Kownacka',
   },
+  {
+    id: '5',
+    name: 'Gabriel',
+    last_name: 'Kownacki',
+  },
 ];

@@ -4,7 +4,7 @@ import { EmployeeComponent } from '../employee/employee.component';
 import { ScheduleFieldComponent } from '../schedule-field/schedule-field.component';
 import { DUMMY_EMPLOYEES } from '../dummy-employees';
 import { dateTag } from './schedule.model';
-
+import { Employee } from '../employee/employee.model';
 @Component({
   selector: 'app-schedule',
   standalone: true,
@@ -14,6 +14,7 @@ import { dateTag } from './schedule.model';
 })
 export class ScheduleComponent {
   employees = DUMMY_EMPLOYEES;
+  numberOfEmployees = this.employees.length;
   //tutaj trzeba zrobić tablice z numerami dat w miesiącu
   //potrzebuję tablicy z numerami i nazwami dni w miesiącu
 
