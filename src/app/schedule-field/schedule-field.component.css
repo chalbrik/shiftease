@@ -1,0 +1,13 @@
+div.schedule-field {
+  height: 350px;
+  width: 100px;
+
+  background-color: white;
+
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}

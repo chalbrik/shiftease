@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { dateTag } from '../schedule/schedule.model';
 
 @Component({
   selector: 'app-schedule-field',
@@ -7,4 +8,6 @@ import { Component } from '@angular/core';
   templateUrl: './schedule-field.component.html',
   styleUrl: './schedule-field.component.css',
 })
-export class ScheduleFieldComponent {}
+export class ScheduleFieldComponent {
+  @Input({ required: true }) numberOfTheDay!: dateTag;
+}

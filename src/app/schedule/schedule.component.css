@@ -9,3 +9,13 @@ div.main-container {
 
   background-color: rgb(191, 224, 224);
 }
+
+div.employee-list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+div.schedule-field-container {
+  display: flex;
+  flex-direction: row;
+}

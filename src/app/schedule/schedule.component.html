@@ -1,4 +1,12 @@
 <div class="main-container">
-  <app-employee />
-  <app-schedule-field />
+  <div class="employee-list-container">
+    @for(employee of employees; track employee.id){
+    <app-employee [employee]="employee" />
+    }
+  </div>
+  <div class="schedule-field-container">
+    @for(dayNumber of daysOfCurrentMonth; track dayNumber.numberOfTheDay){
+    <app-schedule-field [numberOfTheDay]="dayNumber" />
+    }
+  </div>
 </div>

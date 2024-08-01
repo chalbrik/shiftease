@@ -1,28 +1,31 @@
-//Możliwe, że trzeba będzie usunąć ten plik
-
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { dateTag } from './schedule.model';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class ScheduleService {
-  private currentDate = new Date();
-  private dateSubject = new BehaviorSubject<Date>(this.currentDate);
-
-  date$ = this.dateSubject.asObservable();
-
   constructor() {}
 
-  getDaysInMonth(date: Date): number[] {
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-    return Array.from({ length: daysInMonth }, (_, i) => i + 1);
-  }
+  currentDate = 8;
 
-  changeMonth(offset: number): void {
-    this.currentDate.setMonth(this.currentDate.getMonth() + offset);
-    this.dateSubject.next(new Date(this.currentDate));
+  getDaysInMonth(): dateTag[] {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+
+    // Get the last day of the current month
+    const lastDay = new Date(year, month + 1, 0).getDate();
+
+    // return Array.from({ length: lastDay }, (_, i) => (i + 1).toString());
+    return Array.from({ length: lastDay }, (_, i) => {
+      const date = new Date(year, month, i + 1);
+      const dayOfTheWeek = date.toLocaleDateString('en-US', {
+        weekday: 'long',
+      });
+
+      return {
+        numberOfTheDay: (i + 1).toString(),
+        dayOfTheWeek: dayOfTheWeek,
+      };
+    });
   }
 }
