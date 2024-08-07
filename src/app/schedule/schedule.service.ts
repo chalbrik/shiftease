@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
-import { dateTag } from './schedule.model';
+import { MonthData, DateTag } from './schedule.model';
 
 @Injectable({ providedIn: 'root' })
 export class ScheduleService {
   constructor() {}
 
-  getDaysInMonth(): dateTag[] {
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
-
+  getDaysInMonth(year: number, month: number): MonthData {
     // Get the last day of the current month
     const lastDay = new Date(year, month + 1, 0).getDate();
+    const monthName = new Date(year, month).toLocaleDateString('pl-PL', {
+      month: 'long',
+    });
 
-    return Array.from({ length: lastDay }, (_, i) => {
+    const days: DateTag[] = Array.from({ length: lastDay }, (_, i) => {
       const date = new Date(year, month, i + 1);
       let dayOfTheWeek = date.toLocaleDateString('pl-PL', {
         weekday: 'short',
@@ -29,5 +28,11 @@ export class ScheduleService {
         dayOfTheWeek: dayOfTheWeek,
       };
     });
+
+    return {
+      days: days,
+      monthName: monthName,
+      year: year,
+    };
   }
 }

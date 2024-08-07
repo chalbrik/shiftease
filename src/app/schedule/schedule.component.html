@@ -1,12 +1,26 @@
 <div class="main-container">
-  <div class="employee-list-container">
-    @for(employee of employees; track employee.id){
-    <app-employee [employee]="employee" [selected]="false" />
-    }
+  <div class="schedule-settings-field">
+    <div class="display-month-year">
+      <span>{{ monthData.monthName }}</span> <span>{{ monthData.year }}</span>
+    </div>
+    <div class="change-month-buttons">
+      <button (click)="goToPreviousMonth()">Previous month</button>
+      <button (click)="goToNextMonth()">Next month</button>
+    </div>
   </div>
-  <div class="schedule-field-container">
-    @for(dayNumber of daysOfCurrentMonth; track dayNumber.numberOfTheDay){
-    <app-schedule-field [numberOfTheDay]="dayNumber" [employees]="employees" />
-    }
+  <div class="employees-schedule-container">
+    <div class="employee-list-container">
+      @for(employee of employees; track employee.id){
+      <app-employee [employee]="employee" [selected]="false" />
+      }
+    </div>
+    <div class="schedule-field-container">
+      @for(dayNumber of monthData.days; track dayNumber.numberOfTheDay){
+      <app-schedule-field
+        [numberOfTheDay]="dayNumber"
+        [employees]="employees"
+      />
+      }
+    </div>
   </div>
 </div>

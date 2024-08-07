@@ -1,13 +1,40 @@
 div.main-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
 
   width: 100%;
   height: 400px;
 
-  background-color: rgb(191, 224, 224);
+  background-color: rgb(255, 255, 255);
+
+  border: 2px solid #f2c53d;
+
+  border-radius: 10px;
+}
+
+div.schedule-settings-field {
+  width: 100%;
+  height: 40px;
+
+  background-color: aqua;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+div.display-month-year {
+  margin-right: 100px;
+}
+
+div.employees-schedule-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 div.employee-list-container {
