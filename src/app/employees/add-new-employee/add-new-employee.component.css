@@ -1,0 +1,21 @@
+div.backdrop {
+  background-color: rgb(0, 0, 0, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+dialog {
+  height: 400px;
+  width: 200px;
+
+  background-color: white;
+
+  overflow: hidden;
+
+  top: 5rem;
+
+  padding: 1rem;
+}

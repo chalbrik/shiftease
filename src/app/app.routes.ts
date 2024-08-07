@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { ScheduleComponent } from './schedule/schedule.component';
-import { EmployeesDataComponent } from './employees-data/employees-data.component';
+import { EmployeesDataComponent } from './employees/employees-data/employees-data.component';
 
 export const routes: Routes = [
   {

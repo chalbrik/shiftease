@@ -12,7 +12,7 @@ export class EmployeeComponent {
   @Input({ required: true }) employee!: Employee;
   @Input({ required: true }) selected!: boolean;
 
-  @Output() select = new EventEmitter<string>();
+  @Output() select = new EventEmitter<number>();
 
   onSelectEmployee() {
     this.select.emit(this.employee.id);

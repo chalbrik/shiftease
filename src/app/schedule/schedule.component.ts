@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { ScheduleService } from './schedule.service';
 
-import { EmployeeComponent } from '../employee/employee.component';
+import { EmployeeComponent } from '../employees/employee/employee.component';
 import { ScheduleFieldComponent } from '../schedule-field/schedule-field.component';
 
 import { DUMMY_EMPLOYEES } from '../dummy-employees';
 import { DateTag, MonthData } from './schedule.model';
-import { Employee } from '../employee/employee.model';
+import { Employee } from '../employees/employee/employee.model';
 
 @Component({
   selector: 'app-schedule',

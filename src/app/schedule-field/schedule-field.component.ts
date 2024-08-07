@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { DateTag } from '../schedule/schedule.model';
-import { Employee } from '../employee/employee.model';
+import { Employee } from '../employees/employee/employee.model';
 
 @Component({
   selector: 'app-schedule-field',
