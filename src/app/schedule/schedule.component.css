@@ -5,25 +5,33 @@ div.main-container {
   align-items: center;
 
   width: 100%;
-  height: 400px;
+  height: auto;
 
   background-color: rgb(255, 255, 255);
 
   border: 2px solid #f2c53d;
 
   border-radius: 10px;
+
+  padding: 10px 10px 10px 10px;
 }
 
 div.schedule-settings-field {
   width: 100%;
   height: 40px;
 
-  background-color: aqua;
+  background-color: rgb(192, 188, 182, 0.15);
+  border: 1px solid #f2c53d;
+
+  border-radius: 10px;
 
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+
+  margin-bottom: 20px;
+  padding: 0 10px 0 10px;
 }
 
 div.display-month-year {
@@ -31,18 +39,30 @@ div.display-month-year {
 }
 
 div.employees-schedule-container {
+  width: 100%;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
 }
 
 div.employee-list-container {
   display: flex;
   flex-direction: column;
+
+  background-color: rgb(192, 188, 182, 0.15);
+  border: 1px solid #f2c53d;
+
+  border-radius: 10px;
 }
 
 div.schedule-field-container {
   display: flex;
   flex-direction: row;
+
+  background-color: rgb(192, 188, 182, 0.15);
+  border: 1px solid #f2c53d;
+
+  border-radius: 10px;
 }

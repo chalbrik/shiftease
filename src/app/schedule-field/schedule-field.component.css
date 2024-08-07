@@ -1,6 +1,10 @@
 div.schedule-field {
   width: 40px;
-  background-color: white;
+  background-color: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 div.upper-schedule-part {
@@ -15,14 +19,30 @@ div.lower-schedule-part {
   height: 30px;
 }
 
-input.employee-hours {
-  width: 35px;
-  height: 30px;
+textarea.employee-hours {
+  width: 100%;
+  height: 70px;
 
-  padding: 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 10px;
 
   padding-block: 0;
   padding-inline: 0;
+
+  margin: 0;
+  padding: 2px;
+
+  background-color: transparent;
+  border: 1px solid rgb(0, 0, 0, 0.2);
+  outline: none;
+  resize: none;
+
+  text-align: center;
+  overflow-wrap: break-word;
+  overflow-y: hidden;
+  white-space: pre-wrap;
 }
 
 span.schedule-field-date {

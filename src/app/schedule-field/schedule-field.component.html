@@ -5,6 +5,11 @@
   </div>
   <!-- Tu powinni być wyświetlani employees -->
   @for(employee of employees; track employee.id){
-  <input id="{{ employee.id }}" class="employee-hours" type="text" />
+  <textarea
+    id="{{ employee.id }}"
+    class="employee-hours"
+    type="text"
+    maxlength="32"
+  ></textarea>
   }
 </div>
