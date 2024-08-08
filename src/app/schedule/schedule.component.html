@@ -20,8 +20,11 @@
       <app-schedule-field
         [numberOfTheDay]="dayNumber"
         [employees]="employees"
+        (addScheduleFieldValue)="onAddScheduleFieldValue($event)"
+        [scheduleFieldData]="monthDataObject"
       />
       }
     </div>
   </div>
 </div>
+<button (click)="logTypedValues()">Wyświetl Typed Values</button>

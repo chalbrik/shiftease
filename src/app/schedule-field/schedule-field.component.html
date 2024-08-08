@@ -1,3 +1,4 @@
+<button (click)="logTypedValues()">Wyświetl Typed Values</button>
 <div class="schedule-field">
   <div class="upper-schedule-part">
     <span class="schedule-field-date">{{ numberOfTheDay.numberOfTheDay }}</span>
@@ -10,6 +11,11 @@
     class="employee-hours"
     type="text"
     maxlength="32"
+    [(ngModel)]="
+      typedValue[generateKey(numberOfTheDay.numberOfTheDay, employee.id)]
+    "
+    (blur)="onBlur()"
   ></textarea>
   }
 </div>
+<!-- (blur)="updateValue(numberOfTheDay.numberOfTheDay, employee.id)" -->

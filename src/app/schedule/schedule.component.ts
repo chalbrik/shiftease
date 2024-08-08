@@ -22,17 +22,33 @@ export class ScheduleComponent {
   currentYear: number = new Date().getFullYear();
   currentMonth: number = new Date().getMonth();
 
+  //Deklaracja mapy, która będzie przechowywac dane w textarea dla każdego miesiąca
+  monthDataObject: { [key: string]: { [key: string]: string } } = {};
+
   monthData!: MonthData;
 
   constructor(private scheduleService: ScheduleService) {
     this.loadDaysInMonth();
   }
 
+  //generowanie unikalnego klucza dla każdego miesiąca
+  //klucze będą używane w mapie do zapisywanie danych w danym miesiącu
+  getMonthKey(year: number, month: number): string {
+    return `${year}-${('0' + (month + 1)).slice(-2)}`;
+  }
+
   loadDaysInMonth() {
+    const monthKey = this.getMonthKey(this.currentYear, this.currentMonth);
+
     this.monthData = this.scheduleService.getDaysInMonth(
       this.currentYear,
       this.currentMonth
     );
+
+    // Sprawdź, czy klucz istnieje, jeśli nie, zainicjuj pusty obiekt
+    if (!this.monthDataObject[monthKey]) {
+      this.monthDataObject[monthKey] = {};
+    }
   }
 
   goToNextMonth() {
@@ -51,5 +67,30 @@ export class ScheduleComponent {
       this.currentYear--;
     }
     this.loadDaysInMonth();
+  }
+
+  onAddScheduleFieldValue(scheduleFieldValue: { [key: string]: string }) {
+    const monthKey = this.getMonthKey(this.currentYear, this.currentMonth);
+
+    // Sprawdź, czy klucz miesiąca już istnieje w monthDataMap
+    if (!this.monthDataObject[monthKey]) {
+      this.monthDataObject[monthKey] = {};
+    }
+
+    // Zaktualizuj dane dla tego miesiąca
+    for (const key in scheduleFieldValue) {
+      if (scheduleFieldValue.hasOwnProperty(key)) {
+        this.monthDataObject[monthKey][key] = scheduleFieldValue[key];
+      }
+    }
+  }
+
+  // getScheduleFieldData(day: string): { [key: string]: string } {
+  //   const monthKey = this.getMonthKey(this.currentYear, this.currentMonth);
+  //   return this.monthDataObject[monthKey] || {};
+  // }
+
+  logTypedValues() {
+    console.log(this.monthDataObject);
   }
 }
