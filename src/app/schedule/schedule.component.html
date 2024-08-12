@@ -16,14 +16,24 @@
       }
     </div>
     <div class="schedule-field-container">
-      @for(dayNumber of monthData.days; track dayNumber.numberOfTheDay){
+      @for(dayData of monthData.days; track dayData.numberOfTheDay){
       <app-schedule-field
-        [numberOfTheDay]="dayNumber"
+        [fieldIdStart]="
+          getFieldId(
+            dayData.numberOfTheYear,
+            dayData.numberOfTheMonth,
+            dayData.numberOfTheDay
+          )
+        "
+        [numberOfTheDay]="dayData"
         [employees]="employees"
         (addScheduleFieldValue)="onAddScheduleFieldValue($event)"
         [scheduleFieldData]="monthDataObject"
       />
       }
+      <!-- @for(dayNumber of monthData.days; track dayNumber.numberOfTheDay){
+      <app-month-days [monthDays]="dayNumber" />
+      } może poźniej tutaj ogarnę jak poprawić layot, moze poprzedni nie jst zły, bo trochę trudno mi to sobie wyobrazić-->
     </div>
   </div>
 </div>

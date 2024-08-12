@@ -11,7 +11,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './schedule-field.component.css',
 })
 export class ScheduleFieldComponent {
-  @Input({ required: true }) numberOfTheDay!: DateTag;
+  @Input({ required: true }) fieldIdStart!: string;
+  @Input({ required: true })
+  numberOfTheDay!: DateTag;
   @Input({ required: true }) employees!: Employee[];
 
   @Input({ required: true }) scheduleFieldData!: {
@@ -24,17 +26,29 @@ export class ScheduleFieldComponent {
     [key: string]: string;
   }>();
 
-  typedValue: { [key: string]: string } = {};
+  //typedValue: { [key: string]: string } = {};
+  storedData: { [key: string]: string } = {};
 
-  generateKey(day: string, employeeId: number): string {
-    return `${day}-${employeeId}`;
+  constructor() {
+    // Dodawanie przykładowych danych do obiektu
+    this.storedData['2024-07-1-5'] = '10:00';
+    this.storedData['2024-08-11-2'] = '12:00';
+    this.storedData['2024-08-12-1'] = '13:00';
+    this.storedData['2024-08-12-2'] = '17:00';
   }
 
-  onBlur() {
-    this.addScheduleFieldValue.emit(this.typedValue);
+  //generate key w danym momencie musi generowac ten sam klucz który jest zapisany w stored data
+  generateKey(
+    day: string,
+    month: string,
+    year: string,
+    employeeId: number
+  ): string {
+    return `${year}-${month}-${day}-${employeeId}`;
   }
 
   logTypedValues() {
     console.log(this.scheduleFieldData);
+    console.log(this.storedData);
   }
 }

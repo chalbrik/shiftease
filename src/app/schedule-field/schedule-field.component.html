@@ -1,4 +1,4 @@
-<button (click)="logTypedValues()">Wyświetl Typed Values</button>
+<!-- <button (click)="logTypedValues()">Wyświetl Typed Values</button> -->
 <div class="schedule-field">
   <div class="upper-schedule-part">
     <span class="schedule-field-date">{{ numberOfTheDay.numberOfTheDay }}</span>
@@ -7,14 +7,20 @@
   <!-- Tu powinni być wyświetlani employees -->
   @for(employee of employees; track employee.id){
   <textarea
-    id="{{ employee.id }}"
+    id="{{ fieldIdStart + '-' + employee.id }}"
     class="employee-hours"
     type="text"
     maxlength="32"
     [(ngModel)]="
-      typedValue[generateKey(numberOfTheDay.numberOfTheDay, employee.id)]
+      storedData[
+        generateKey(
+          numberOfTheDay.numberOfTheDay,
+          numberOfTheDay.numberOfTheMonth,
+          numberOfTheDay.numberOfTheYear,
+          employee.id
+        )
+      ]
     "
-    (blur)="onBlur()"
   ></textarea>
   }
 </div>

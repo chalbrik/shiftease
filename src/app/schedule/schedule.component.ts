@@ -7,11 +7,12 @@ import { ScheduleFieldComponent } from '../schedule-field/schedule-field.compone
 import { DUMMY_EMPLOYEES } from '../dummy-employees';
 import { DateTag, MonthData } from './schedule.model';
 import { Employee } from '../employees/employee/employee.model';
+import { MonthDaysComponent } from '../month-days/month-days.component';
 
 @Component({
   selector: 'app-schedule',
   standalone: true,
-  imports: [EmployeeComponent, ScheduleFieldComponent],
+  imports: [EmployeeComponent, ScheduleFieldComponent, MonthDaysComponent],
   templateUrl: './schedule.component.html',
   styleUrl: './schedule.component.css',
 })
@@ -26,6 +27,8 @@ export class ScheduleComponent {
   monthDataObject: { [key: string]: { [key: string]: string } } = {};
 
   monthData!: MonthData;
+
+  fieldId = '1';
 
   constructor(private scheduleService: ScheduleService) {
     this.loadDaysInMonth();
@@ -83,6 +86,14 @@ export class ScheduleComponent {
         this.monthDataObject[monthKey][key] = scheduleFieldValue[key];
       }
     }
+  }
+
+  getFieldId(year: string, month: string, day: string) {
+    let fullFieldId = '';
+
+    fullFieldId = `${year}-${month}-${day}`;
+
+    return fullFieldId;
   }
 
   // getScheduleFieldData(day: string): { [key: string]: string } {

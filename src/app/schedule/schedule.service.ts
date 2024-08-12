@@ -23,16 +23,25 @@ export class ScheduleService {
         dayOfTheWeek = dayOfTheWeek.slice(0, -1); // Remove the last character (dot)
       }
 
+      //add 0 before month number if it is single number
+      let formattedMonth: string =
+        month + 1 < 10 ? '0' + (month + 1) : (month + 1).toString();
+
       return {
         numberOfTheDay: (i + 1).toString(),
         dayOfTheWeek: dayOfTheWeek,
+        numberOfTheMonth: formattedMonth,
+        numberOfTheYear: year.toString(),
       };
     });
 
     return {
       days: days,
       monthName: monthName,
+      month: month,
       year: year,
     };
+
+    //ten serwis trzeba cały zmienić, trzeba generować ten sam klucz
   }
 }
