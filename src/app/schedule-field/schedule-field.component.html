@@ -5,7 +5,7 @@
     <span class="schedule-field-date">{{ numberOfTheDay.dayOfTheWeek }}</span>
   </div>
   <!-- Tu powinni być wyświetlani employees -->
-  @for(employee of employees; track employee.id){
+  <!-- @for(employee of employees; track employee.id){
   <textarea
     id="{{ fieldIdStart + '-' + employee.id }}"
     class="employee-hours"
@@ -21,7 +21,27 @@
         )
       ]
     "
+    (blur)="addValueToScheduleComponent()"
   ></textarea>
-  }
+  } -->
+
+  <textarea
+    *ngFor="let employee of employees; trackBy: trackById"
+    id="{{ fieldIdStart + '-' + employee.id }}"
+    class="employee-hours"
+    maxlength="32"
+    [(ngModel)]="
+      storedData[
+        generateKey(
+          numberOfTheDay.numberOfTheDay,
+          numberOfTheDay.numberOfTheMonth,
+          numberOfTheDay.numberOfTheYear,
+          employee.id
+        )
+      ]
+    "
+    (blur)="addValueToScheduleComponent()"
+  ></textarea>
+
+  <!-- (blur)="updateValue(numberOfTheDay.numberOfTheDay, employee.id)" -->
 </div>
-<!-- (blur)="updateValue(numberOfTheDay.numberOfTheDay, employee.id)" -->

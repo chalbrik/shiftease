@@ -24,14 +24,24 @@ export class ScheduleComponent {
   currentMonth: number = new Date().getMonth();
 
   //Deklaracja mapy, która będzie przechowywac dane w textarea dla każdego miesiąca
-  monthDataObject: { [key: string]: { [key: string]: string } } = {};
+  monthDataValues: { [key: string]: string } = {};
 
   monthData!: MonthData;
 
-  fieldId = '1';
-
   constructor(private scheduleService: ScheduleService) {
     this.loadDaysInMonth();
+
+    const storedData = localStorage.getItem('monthDataValues');
+    if (storedData) {
+      this.monthDataValues = JSON.parse(storedData);
+    }
+  }
+
+  saveMonthData() {
+    localStorage.setItem(
+      'monthDataValues',
+      JSON.stringify(this.monthDataValues)
+    );
   }
 
   //generowanie unikalnego klucza dla każdego miesiąca
@@ -49,9 +59,6 @@ export class ScheduleComponent {
     );
 
     // Sprawdź, czy klucz istnieje, jeśli nie, zainicjuj pusty obiekt
-    if (!this.monthDataObject[monthKey]) {
-      this.monthDataObject[monthKey] = {};
-    }
   }
 
   goToNextMonth() {
@@ -73,19 +80,10 @@ export class ScheduleComponent {
   }
 
   onAddScheduleFieldValue(scheduleFieldValue: { [key: string]: string }) {
-    const monthKey = this.getMonthKey(this.currentYear, this.currentMonth);
+    //const monthKey = this.getMonthKey(this.currentYear, this.currentMonth);
 
-    // Sprawdź, czy klucz miesiąca już istnieje w monthDataMap
-    if (!this.monthDataObject[monthKey]) {
-      this.monthDataObject[monthKey] = {};
-    }
-
-    // Zaktualizuj dane dla tego miesiąca
-    for (const key in scheduleFieldValue) {
-      if (scheduleFieldValue.hasOwnProperty(key)) {
-        this.monthDataObject[monthKey][key] = scheduleFieldValue[key];
-      }
-    }
+    this.monthDataValues = scheduleFieldValue;
+    this.saveMonthData();
   }
 
   getFieldId(year: string, month: string, day: string) {
@@ -102,6 +100,6 @@ export class ScheduleComponent {
   // }
 
   logTypedValues() {
-    console.log(this.monthDataObject);
+    console.log(this.monthDataValues);
   }
 }

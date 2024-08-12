@@ -1,35 +1,39 @@
 <div class="backdrop" (click)="onCancel()"></div>
 <dialog open>
-  <form (ngSubmit)="onSubmit()">
-    <label for="first-name">Imię</label>
-    <input
-      type="text"
-      id="first-name"
-      name="first-name"
-      [(ngModel)]="enteredFirstName"
-    />
-    <label for="last-name">Nazwisko</label>
-    <input
-      type="text"
-      id="last-name"
-      name="last-name"
-      [(ngModel)]="enteredLastName"
-    />
-    <label for="phone-number">Numer telefonu</label>
-    <input
-      type="tel"
-      id="phone-number"
-      name="phone-number"
-      [(ngModel)]="enteredPhoneNumber"
-    />
-    <label for="email-address">Adress email</label>
-    <input
-      type="email"
-      id="email-address"
-      name="email-address"
-      [(ngModel)]="enteredEmail"
-    />
-    <div>
+  <h2>Dodaj pracownika</h2>
+  <form class="add-employee-form" (ngSubmit)="onSubmit()">
+    <div class="add-employee-data">
+      <label for="first-name">Imię</label>
+      <input
+        type="text"
+        id="first-name"
+        name="first-name"
+        [(ngModel)]="enteredFirstName"
+      />
+      <label for="last-name">Nazwisko</label>
+      <input
+        type="text"
+        id="last-name"
+        name="last-name"
+        [(ngModel)]="enteredLastName"
+      />
+      <label for="phone-number">Numer telefonu</label>
+      <input
+        type="tel"
+        id="phone-number"
+        name="phone-number"
+        [(ngModel)]="enteredPhoneNumber"
+      />
+      <label for="email-address">Adress email</label>
+      <input
+        type="email"
+        id="email-address"
+        name="email-address"
+        [(ngModel)]="enteredEmail"
+      />
+    </div>
+
+    <div class="add-employee-buttons">
       <button type="button" (click)="onCancel()">Anuluj</button>
       <button type="submit">Dodaj</button>
     </div>
