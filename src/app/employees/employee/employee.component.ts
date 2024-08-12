@@ -12,6 +12,8 @@ export class EmployeeComponent {
   @Input({ required: true }) employee!: Employee;
   @Input({ required: true }) selected!: boolean;
 
+  @Input({ required: true }) whichDisplay!: boolean;
+
   @Output() select = new EventEmitter<number>();
 
   onSelectEmployee() {

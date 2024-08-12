@@ -1,5 +1,13 @@
+@if(whichDisplay == true){
+<div class="employee-field-schedule">
+  <span class="employee-field-schedule"
+    >{{ employee.name }} {{ employee.last_name }}</span
+  >
+</div>
+} @else if(whichDisplay== false){
 <div class="employee-field">
-  <button (click)="onSelectEmployee()">
+  <button class="employee-field-button" (click)="onSelectEmployee()">
     <span>{{ employee.name }} {{ employee.last_name }}</span>
   </button>
 </div>
+}

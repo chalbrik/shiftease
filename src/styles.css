@@ -8,6 +8,7 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: rgb(192, 188, 182, 0.15);
+  /* background-color: white; */
 }
 
 * {
