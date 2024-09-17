@@ -1,105 +1,63 @@
 import { Component, Input } from '@angular/core';
 import { ScheduleService } from './schedule.service';
+import { EmployeeService } from '../employees/employee.service';
 
 import { EmployeeComponent } from '../employees/employee/employee.component';
-import { ScheduleFieldComponent } from '../schedule-field/schedule-field.component';
+import { ScheduleFieldComponent } from './schedule-field/schedule-field.component';
 
-import { DUMMY_EMPLOYEES } from '../dummy-employees';
 import { DateTag, MonthData } from './schedule.model';
 import { Employee } from '../employees/employee/employee.model';
-import { MonthDaysComponent } from '../month-days/month-days.component';
 
 @Component({
   selector: 'app-schedule',
   standalone: true,
-  imports: [EmployeeComponent, ScheduleFieldComponent, MonthDaysComponent],
+  imports: [EmployeeComponent, ScheduleFieldComponent],
   templateUrl: './schedule.component.html',
   styleUrl: './schedule.component.css',
 })
 export class ScheduleComponent {
-  employees = DUMMY_EMPLOYEES;
+  employees = this.employeeService.getEmployees();
   selectedEmployeeId?: string;
 
-  currentYear: number = new Date().getFullYear();
-  currentMonth: number = new Date().getMonth();
-
   //Deklaracja mapy, która będzie przechowywac dane w textarea dla każdego miesiąca
-  monthDataValues: { [key: string]: string } = {};
+  monthDataValues: { [key: string]: string } =
+    this.scheduleService.getMonthData();
 
   monthData!: MonthData;
 
-  constructor(private scheduleService: ScheduleService) {
+  constructor(
+    private scheduleService: ScheduleService,
+    private employeeService: EmployeeService
+  ) {
     this.loadDaysInMonth();
-
-    const storedData = localStorage.getItem('monthDataValues');
-    if (storedData) {
-      this.monthDataValues = JSON.parse(storedData);
-    }
-  }
-
-  saveMonthData() {
-    localStorage.setItem(
-      'monthDataValues',
-      JSON.stringify(this.monthDataValues)
-    );
-  }
-
-  //generowanie unikalnego klucza dla każdego miesiąca
-  //klucze będą używane w mapie do zapisywanie danych w danym miesiącu
-  getMonthKey(year: number, month: number): string {
-    return `${year}-${('0' + (month + 1)).slice(-2)}`;
+    this.scheduleService.loadMonthData();
   }
 
   loadDaysInMonth() {
-    const monthKey = this.getMonthKey(this.currentYear, this.currentMonth);
-
-    this.monthData = this.scheduleService.getDaysInMonth(
-      this.currentYear,
-      this.currentMonth
-    );
-
-    // Sprawdź, czy klucz istnieje, jeśli nie, zainicjuj pusty obiekt
+    this.monthData = this.scheduleService.getDaysInMonth();
   }
 
   goToNextMonth() {
-    this.currentMonth++;
-    if (this.currentMonth > 11) {
-      this.currentMonth = 0;
-      this.currentYear++;
-    }
+    this.scheduleService.goToNextMonth();
     this.loadDaysInMonth();
   }
 
   goToPreviousMonth() {
-    this.currentMonth--;
-    if (this.currentMonth < 0) {
-      this.currentMonth = 11;
-      this.currentYear--;
-    }
+    this.scheduleService.goToPreviousMonth();
     this.loadDaysInMonth();
   }
 
   onAddScheduleFieldValue(scheduleFieldValue: { [key: string]: string }) {
-    //const monthKey = this.getMonthKey(this.currentYear, this.currentMonth);
-
-    this.monthDataValues = scheduleFieldValue;
-    this.saveMonthData();
+    this.scheduleService.setMonthDataValues(scheduleFieldValue);
+    this.scheduleService.saveMonthData();
   }
 
   getFieldId(year: string, month: string, day: string) {
-    let fullFieldId = '';
-
-    fullFieldId = `${year}-${month}-${day}`;
-
-    return fullFieldId;
+    return this.scheduleService.getFieldId(year, month, day);
   }
 
-  // getScheduleFieldData(day: string): { [key: string]: string } {
-  //   const monthKey = this.getMonthKey(this.currentYear, this.currentMonth);
-  //   return this.monthDataObject[monthKey] || {};
-  // }
-
-  logTypedValues() {
-    console.log(this.monthDataValues);
+  capitalizeFirstLetter(value: string): string {
+    if (!value) return value;
+    return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
   }
 }

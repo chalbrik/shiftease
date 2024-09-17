@@ -1,0 +1,15 @@
+<form>
+  @for(data of monthDaysData; track data.day){
+  <textarea
+    class="schedule-field"
+    [id]="generateFullFieldId(data.day)"
+    name="{{ generateFullFieldId(data.day) }}"
+    [(ngModel)]="inputValues[generateFullFieldId(data.day)]"
+    (ngModelChange)="onChange()"
+    [ngClass]="{
+      saturday: data.dayName === 'Sat',
+      sunday: data.dayName === 'Sun'
+    }"
+  ></textarea>
+  }
+</form>

@@ -78,6 +78,17 @@ div.schedule-field-container {
   /* margin-left: 5px; */
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+}
+
+form div.schedule-field {
+  display: flex;
+  flex-direction: row;
+}
+
 div.change-month-buttons {
   margin: 0;
   padding: auto;

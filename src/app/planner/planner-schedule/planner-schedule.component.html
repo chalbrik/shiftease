@@ -1,0 +1,21 @@
+<div class="planner-heading">
+  <p>{{ monthName + " " + year }}</p>
+  <div class="schedule-buttons">
+    <app-change-month-buttons />
+    <button (click)="onSave()">Save</button>
+  </div>
+</div>
+<div class="planner-day-tags">
+  @for(data of monthDaysData; track data.day){
+  <div class="planner-heading-data-field">
+    <p>{{ data.day }}</p>
+    <p>{{ data.dayName }}</p>
+  </div>
+  }
+</div>
+
+@for(employee of employees; track employee.id){
+<app-planner-schedule-field
+  [startFieldId]="generateStartFieldId(employee.id)"
+/>
+}

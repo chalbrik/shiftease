@@ -2,7 +2,8 @@
   <div class="schedule-settings-field">
     <div class="empty-div-to-fill-space"></div>
     <div class="display-month-year">
-      <span>{{ monthData.monthName }} </span> <span>{{ monthData.year }}</span>
+      <span>{{ capitalizeFirstLetter(monthData.monthName) }} </span>
+      <span>{{ monthData.year }}</span>
     </div>
     <div class="change-month-buttons">
       <button (click)="goToPreviousMonth()">
@@ -48,22 +49,26 @@
       }
     </div>
     <div class="schedule-field-container">
-      @for(dayData of monthData.days; track dayData.numberOfTheDay){
-      <app-schedule-field
-        [fieldIdStart]="
-          getFieldId(
-            dayData.numberOfTheYear,
-            dayData.numberOfTheMonth,
-            dayData.numberOfTheDay
-          )
-        "
-        [numberOfTheDay]="dayData"
-        [employees]="employees"
-        (addScheduleFieldValue)="onAddScheduleFieldValue($event)"
-        [scheduleFieldData]="monthDataValues"
-      />
-      }
+      <form>
+        <div class="schedule-field">
+          @for(dayData of monthData.days; track dayData.numberOfTheDay){
+          <app-schedule-field
+            [fieldIdStart]="
+              getFieldId(
+                dayData.numberOfTheYear,
+                dayData.numberOfTheMonth,
+                dayData.numberOfTheDay
+              )
+            "
+            [numberOfTheDay]="dayData"
+            [employees]="employees"
+            (addScheduleFieldValue)="onAddScheduleFieldValue($event)"
+            [scheduleFieldData]="monthDataValues"
+          />
+          }
+        </div>
+        <!-- <button type="submit">Zapisz</button> moze nie bede używał form, nie wiem na razie, tzreba przeanalizaować kod z servisu i dokładnie przesledzić jak te dane są zapisywane -->
+      </form>
     </div>
   </div>
 </div>
-<!-- <button (click)="logTypedValues()">Wyświetl Typed Values</button> -->

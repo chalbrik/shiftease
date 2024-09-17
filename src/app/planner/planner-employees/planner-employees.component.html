@@ -1,0 +1,5 @@
+<ul>
+  @for(employee of employees; track employee.id){
+  <li class="employee-field">{{ employee.name + " " + employee.last_name }}</li>
+  }
+</ul>

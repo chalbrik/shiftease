@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { DUMMY_EMPLOYEES } from '../../dummy-employees';
+
+import { EmployeeService } from '../employee.service';
 import { EmployeeComponent } from '../employee/employee.component';
 import { DataCardComponent } from '../data-card/data-card.component';
 import { AddNewEmployeeComponent } from '../add-new-employee/add-new-employee.component';
@@ -13,10 +14,12 @@ import { NewEmployeeData } from '../employee/employee.model';
   styleUrl: './employees-data.component.css',
 })
 export class EmployeesDataComponent {
-  employees = DUMMY_EMPLOYEES;
+  employees = this.employeeService.getEmployees();
   selectedEmployeeId?: number;
 
   isAddingNewEmployee: boolean = false;
+
+  constructor(private employeeService: EmployeeService) {}
 
   get selectedEmployee() {
     return this.employees.find(

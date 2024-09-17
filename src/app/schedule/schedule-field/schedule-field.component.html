@@ -1,0 +1,29 @@
+<div class="schedule-field">
+  <div class="upper-schedule-part">
+    <span class="schedule-field-date">{{ numberOfTheDay.numberOfTheDay }}</span>
+    <span class="schedule-field-date">{{ numberOfTheDay.dayOfTheWeek }}</span>
+  </div>
+
+  <textarea
+    *ngFor="let employee of employees; trackBy: trackById"
+    class="employee-hours"
+    id="{{ fieldIdStart + '-' + employee.id }}"
+    name="{{ fieldIdStart + '-' + employee.id }}"
+    maxlength="32"
+    [(ngModel)]="
+      storedData[
+        generateKey(
+          numberOfTheDay.numberOfTheDay,
+          numberOfTheDay.numberOfTheMonth,
+          numberOfTheDay.numberOfTheYear,
+          employee.id
+        )
+      ]
+    "
+    (input)="addValueToScheduleComponent()"
+    [ngClass]="{
+      saturday: numberOfTheDay.dayOfTheWeek === 'sob',
+      sunday: numberOfTheDay.dayOfTheWeek === 'niedz'
+    }"
+  ></textarea>
+</div>
