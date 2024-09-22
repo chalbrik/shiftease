@@ -26,7 +26,7 @@ textarea.schedule-field {
   outline: none;
   resize: none;
 
-  text-align: center;
+  text-align: left;
   overflow-wrap: break-word;
   overflow-y: hidden;
   white-space: pre-wrap;

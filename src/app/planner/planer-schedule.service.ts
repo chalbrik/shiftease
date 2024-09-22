@@ -62,7 +62,9 @@ export class PlanerScheduleService {
   // Dane grafiku
 
   private scheduleValues = signal<{ [key: string]: string }>({
-    '1-9-13': '10:00-16:00',
+    '1-9-13': '10:00 - 16:00',
+    '3-9-8': '06:00 - 15:00',
+    '4-9-6': '07:00 - 18:00',
   });
 
   saveScheduleValue(inputValue: { [key: string]: string }) {
