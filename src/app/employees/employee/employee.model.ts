@@ -4,6 +4,9 @@ export interface Employee {
   last_name: string;
   phone_number: string;
   email_address: string;
+  start_hire_date: string;
+  end_hire_date: string;
+  contract_type: string;
 }
 
 export interface NewEmployeeData {
@@ -11,4 +14,12 @@ export interface NewEmployeeData {
   last_name: string;
   phone_number: string;
   email_address: string;
+  start_hire_date: string;
+  end_hire_date: string;
+  contract_type: string;
+}
+
+export interface ContractTypes {
+  contractType: string;
+  viewContractType: string;
 }

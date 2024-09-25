@@ -1,41 +1,93 @@
-<div class="backdrop" (click)="onCancel()"></div>
-<dialog open>
+<form class="add-employee-form" (ngSubmit)="onSubmit()">
   <h2>Dodaj pracownika</h2>
-  <form class="add-employee-form" (ngSubmit)="onSubmit()">
-    <div class="add-employee-data">
-      <label for="first-name">Imię</label>
-      <input
-        type="text"
-        id="first-name"
-        name="first-name"
-        [(ngModel)]="enteredFirstName"
-      />
-      <label for="last-name">Nazwisko</label>
-      <input
-        type="text"
-        id="last-name"
-        name="last-name"
-        [(ngModel)]="enteredLastName"
-      />
-      <label for="phone-number">Numer telefonu</label>
-      <input
-        type="tel"
-        id="phone-number"
-        name="phone-number"
-        [(ngModel)]="enteredPhoneNumber"
-      />
-      <label for="email-address">Adress email</label>
-      <input
-        type="email"
-        id="email-address"
-        name="email-address"
-        [(ngModel)]="enteredEmail"
-      />
+  <div class="add-employee-data">
+    <div class="input-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Imię</mat-label>
+        <input
+          matInput
+          type="text"
+          id="first-name"
+          name="first-name"
+          [(ngModel)]="enteredFirstName"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Nazwisko</mat-label>
+        <input
+          matInput
+          type="text"
+          id="last-name"
+          name="last-name"
+          [(ngModel)]="enteredLastName"
+        />
+      </mat-form-field>
     </div>
 
-    <div class="add-employee-buttons">
-      <button type="button" (click)="onCancel()">Anuluj</button>
-      <button type="submit">Dodaj</button>
+    <div class="input-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Numer telefonu</mat-label>
+        <input
+          matInput
+          type="tel"
+          id="phone-number"
+          name="phone-number"
+          [(ngModel)]="enteredPhoneNumber"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Adress email</mat-label>
+        <input
+          matInput
+          type="email"
+          id="email-address"
+          name="email-address"
+          [(ngModel)]="enteredEmail"
+        />
+      </mat-form-field>
     </div>
-  </form>
-</dialog>
+
+    <div class="input-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Okres zatrudnienia</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input
+            matStartDate
+            placeholder="Data początkowa"
+            [(ngModel)]="enteredStartHireDate"
+          />
+          <input
+            matEndDate
+            placeholder="Data końcowa"
+            [(ngModel)]="enteredEndHireDate"
+          />
+        </mat-date-range-input>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row">
+    <mat-form-field>
+      <mat-label>Rodzaj umowy</mat-label>
+      <mat-select [(ngModel)]="selectedContractType" name="contract">
+        @for (contract of contracts; track contract) {
+        <mat-option [value]="contract.contractType">{{
+          contract.viewContractType
+        }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="add-employee-buttons">
+    <button mat-button type="button" (click)="onCancel()">Anuluj</button>
+    <button mat-raised-button type="submit">Dodaj</button>
+  </div>
+</form>
